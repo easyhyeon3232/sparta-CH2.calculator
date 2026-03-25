@@ -1,5 +1,6 @@
 package calculator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,10 +10,8 @@ public class App {
         // 계산하는 객체(인스턴스화)생성
         Calculator cal = new Calculator();
         Scanner sc = new Scanner(System.in);
-        String finish = "yes";
 
-        while (finish.equalsIgnoreCase("yes")) {
-
+        while (true) {
             System.out.print("첫 번째 정수를 입력하세요 : ");
             int num1 = sc.nextInt();
 
@@ -24,63 +23,65 @@ public class App {
                 continue;
             }
 
-            System.out.print("사칙연산을 입력하세요(+, -, *, /) : ");
-            //  charAt(0) : 첫 글자만 가져온다.
-            char sen = sc.next().charAt(0);
+            boolean flag = true;
+            while (flag) {
+                System.out.print("사칙연산을 입력하세요(+, -, *, /) : ");
+                char op = sc.next().charAt(0);    //  charAt(0) : 첫 글자만 가져온다.
 
-            // 사칙연산을 맞게 입력하면 클래스로 이동
-            switch (sen) {
-                case '+':
-                case '-':
-                case '*':
-                case '/':
-                    break;
-                default:
-                    System.out.println("사칙연산을 잘못 입력하셨습니다. 다시 입력하세요");
+                // 사칙연산을 맞게 입력하면 클래스로 이동
+                // if문으로 하나의 조건으로
+                if (!(op == '+' || op == '-' || op == '*' || op == '/')) {
+                    System.out.println("사칙연산을 잘못 입력하셨습니다. 다시 입력해주세요.");
                     continue;
-            }
-            int result = cal.calculate(num1, num2, sen);
-            System.out.println("result = " + result);
+                } else if(op == '/') {
+                    if(num2 == 0) {
+                        System.out.println("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다.");
+                        continue;
+                    }
+                }
+                flag = false;
 
-            System.out.println("현재 계산 기록 : " + cal.getResultList());
+                int result = cal.calculate(num1, num2, op);
+                System.out.println("result = " + result);
+
+                System.out.println("현재 계산 기록 : " + cal.getResultList());
+            }
+
 
             // 더 계산할지 질문 그만하고 싶으면 exit 계속하고 싶으면 yes(대문자 가능)
-            boolean flag3 = true;
-            while (flag3) {
+            boolean flag2 = true;
+            while (flag2) {
                 // /n 비우기
                 sc.nextLine();
-                System.out.print("더 계산하려면 yes(YES), 종료를 원하면 exit(EXIT), 수정을 원하면 update(UPDATE)를 입력하세요 : ");
-                finish = sc.nextLine();
+                System.out.print("더 계산하려면 yes(YES), 종료를 원하면 exit(EXIT), 삭제을 원하면 remove(REMOVE)를 입력하세요 : ");
+                String command = sc.nextLine();
 
-                if(finish.equalsIgnoreCase("update")) {
-                    cal.removeList();
+                if (command.equalsIgnoreCase("remove")) {
+                    cal.removeFirstList();
                     System.out.println("수정한 계산 기록 : " + cal.getResultList());
                     continue;
                 }
 
-                switch (finish) {
+//                if (finish.equalsIgnoreCase("clear")) {
+//                    cal.setReslut(new ArrayList<>());
+//                    System.out.println("전부 삭제되었습니다. 현재 계산 기록 : " + cal.getResultList());
+//                    continue;
+//                }
+
+                switch (command) {
                     case "yes":
                         break;
                     case "exit":
                         System.out.println("종료하겠습니다.");
-                        break;
-                    case "update":
-                        cal.removeList();
                         break;
                     default:
                         System.out.println("잘못 입력하셨습니다. 다시 입력주세요!!");
                         continue;
                 }
                 // 반복문 종료
-                flag3 = false;
-            }//while(flag3)
+                flag2 = false;
+            }//while(flag2)
+            break;
         }//while(yes)
     }//main
 }//App
-
-
-// 질문 가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현하라는데
-// 가장 먼저 저장된 데이터는 새로운 값이 들어오면 덮어지는 거 아닌가?
-// setter 활용
-//            System.out.println("현재 num의 값 : " + num1);
-//            cal.setNum(num1);

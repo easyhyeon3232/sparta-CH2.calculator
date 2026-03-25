@@ -6,7 +6,7 @@ public class Calculator {
 
     // 속성
     // result 값 저장
-    private final ArrayList<Integer> resultList = new ArrayList<>();
+    private ArrayList<Integer> resultList = new ArrayList<>();
 
 
     // 생성자
@@ -15,11 +15,11 @@ public class Calculator {
 
     // 기능
     // 사칙연산 기능
-    public int calculate(int num1, int num2, char sen) {
+    public int calculate(int num1, int num2, char op) {
 
         int result = 0;
 
-        switch (sen) {
+        switch (op) {
             case '+':
                 result = num1 + num2;
                 break;
@@ -30,10 +30,6 @@ public class Calculator {
                 result = num1 * num2;
                 break;
             case '/':
-                if (num2 == 0) {
-                    System.out.println("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다.");
-                    break;
-                }
                 result = num1 / num2;
                 break;
         }
@@ -48,16 +44,16 @@ public class Calculator {
     }
 
     // 삭제(첫 번째 결과값만)
-    public void removeList() {
+    public void removeFirstList() {
         // 리스트안에 비어있으면?
         // resultList안에 있는 첫번째 값을 지운다.
-        int remove = resultList.remove(0);
-    }
-
-    // setter 활용
-    //public void setreslut(?) {
-
+        resultList.remove(0);
     }
 
 }//class
 
+
+// setter 활용
+//    public void setReslut(ArrayList<Integer> allList) {
+//        this.resultList = allList;
+//    }
