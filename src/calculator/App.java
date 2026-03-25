@@ -33,8 +33,8 @@ public class App {
                 if (!(op == '+' || op == '-' || op == '*' || op == '/')) {
                     System.out.println("사칙연산을 잘못 입력하셨습니다. 다시 입력해주세요.");
                     continue;
-                } else if(op == '/') {
-                    if(num2 == 0) {
+                } else if (op == '/') {
+                    if (num2 == 0) {
                         System.out.println("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다.");
                         continue;
                     }
@@ -67,21 +67,16 @@ public class App {
 //                    System.out.println("전부 삭제되었습니다. 현재 계산 기록 : " + cal.getResultList());
 //                    continue;
 //                }
-
-                switch (command) {
-                    case "yes":
-                        break;
-                    case "exit":
-                        System.out.println("종료하겠습니다.");
-                        break;
-                    default:
-                        System.out.println("잘못 입력하셨습니다. 다시 입력주세요!!");
-                        continue;
+                if (command.equalsIgnoreCase("yes")) {
+                    flag2 = false;
+                } else if (command.equalsIgnoreCase("exit")) {
+                    System.out.println("종료하겠습니다.");
+                    return;
+                } else {
+                    System.out.println("잘못 입력하셨습니다. 다시 입력주세요!!");
+                    continue;
                 }
-                // 반복문 종료
-                flag2 = false;
             }//while(flag2)
-            break;
         }//while(yes)
     }//main
 }//App
