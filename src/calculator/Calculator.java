@@ -1,55 +1,59 @@
 package calculator;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Calculator {
 
-    public static void main(String[] args) {
-        Scanner scr = new Scanner(System.in);
-
-        String finish = "";
-
-        while (!finish.equals("exit")) {
-
-            // 양의 정수 (0포함)
-            System.out.print("정수를 입력하세요 : ");
-            int num = scr.nextInt();
-            System.out.print("정수를 입력하세요 : ");
-            int num2 = scr.nextInt();
-
-            boolean flag = true;
-
-            while (flag) {
-                scr.nextLine();
-                System.out.print("사칙연산을 입력하세요(+, -, *, /) : ");
-                String sen = scr.nextLine();
-
-                if (sen.equals("+")) {
-                    System.out.println(num + "+" + num2 + "=" + (num + num2));
-
-                } else if (sen.equals("-")) {
-                    System.out.println(num + "-" + num2 + "=" + (num - num2));
-
-                } else if (sen.equals("*")) {
-                    System.out.println(num + "x" + num2 + "=" + (num * num2));
-
-                } else if (sen.equals("/")) {
-                    if (num2 == 0) {
-                        System.out.println("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다.");
-                    } else
-                        System.out.println(num + "/" + num2 + "=" + (num / num2));
-                    //break;
-                } else {
-                    System.out.println("사칙연산을 잘 못 입력하셨습니다. 다시 입력하세요.");
-                    continue;
-                }
-                flag = false;
-            }
-            // 더 계산하시겠습니까 에서 exit 또는 yes만 입력되게 처리하기
-            System.out.print("더 계산하시겠습니까? : ");
-            finish = scr.nextLine();
-        }
+    // 속성
+    // result 값 저장
+    private ArrayList<Integer> resultList = new ArrayList<>();
 
 
+    // 생성자
+    Calculator() {
     }
-}
+
+    // 기능
+    // 사칙연산 기능
+    public int calculate(int num1, int num2, char op) {
+
+        int result = 0;
+
+        switch (op) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                result = num1 / num2;
+                break;
+        }
+        // 결과값을 리스트에 저장을 하지만 반환은 하나의 결과만 보낸다.
+        resultList.add(result);
+        return result;
+    }//calculate
+
+    // getter 활용
+    public ArrayList<Integer> getResultList() {
+        return this.resultList;
+    }
+
+    // 삭제(첫 번째 결과값만)
+    public void removeFirstList() {
+        // 리스트안에 비어있으면?
+        // resultList안에 있는 첫번째 값을 지운다.
+        resultList.remove(0);
+    }
+
+}//class
+
+
+// setter 활용
+//    public void setReslut(ArrayList<Integer> allList) {
+//        this.resultList = allList;
+//    }
