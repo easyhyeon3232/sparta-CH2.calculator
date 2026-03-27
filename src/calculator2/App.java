@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+        Calculator cal = new Calculator();
         Scanner sc = new Scanner(System.in);
         int num1 = 0;
         int num2 = 0;
@@ -43,24 +44,8 @@ public class App {
                 continue;
             }
 
-            switch (op) {
-                case '+':
-                    System.out.println("결과 : " + num1 + " + " + num2 + " = " + (num1 + num2));
-                    break;
-                case '-':
-                    System.out.println("결과 : " + num1 + " - " + num2 + " = " + (num1 - num2));
-                    break;
-                case '*':
-                    System.out.println("결과 : " + num1 + " * " + num2 + " = " + (num1 * num2));
-                    break;
-                case '/':
-                    if (num2 == 0) {
-                        System.out.println("나눗셈에서 분모는 0이 될 수 없습니다. 처음부터 다시 입력해주세요");
-                        continue;
-                    }
-                    System.out.println("결과 : " + num1 + " / " + num2 + "  =" + (num1 / num2));
-                    break;
-            }
+            int result = cal.calculate(num1, num2, op);
+            System.out.println("결과 : " + result);
 
             while (true) {
                 sc.nextLine();
