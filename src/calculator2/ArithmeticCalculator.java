@@ -2,6 +2,7 @@ package calculator2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 enum OperatorType {
     PLUS('+'),
@@ -27,12 +28,6 @@ enum OperatorType {
             default -> null;
         };
     }
-
-
-    // Getter
-    public char getSymbol() {
-        return symbol;
-    }
 }
 
 // <T extends Number> : T는 숫자 종류라면 무엇이든 가능하다는 제한
@@ -41,12 +36,9 @@ public class ArithmeticCalculator<T extends Number> {
 
     // 속성
     // 결과값들을 T 타입의 리스트로 저장
-    private List<Double> results = new ArrayList<>();
+    private List<Double> resultsList = new ArrayList<>();
 
     // 생성자
-//    public ArithmeticCalculator() {
-//        this.result = result;
-//    }
 
     // 기능
     // 사칙연산 수행
@@ -69,15 +61,23 @@ public class ArithmeticCalculator<T extends Number> {
             case DIVIDE:
                 result = n1 / n2;
         }
-        results.add(result);
+        resultsList.add(result);
         return result;
     }
 
     public List<Double> getResult() {
-        return this.results;
+        return this.resultsList;
     }
 
     public void removeResult() {
-        this.results.remove(0);
+        this.resultsList.remove(0);
     }
+
+    public List<Double> getBigValue (double target) {
+        return resultsList.stream()
+                .filter(n -> n > target)
+                .collect(Collectors.toList());
+
+    }
+
 }

@@ -1,11 +1,15 @@
 package calculator2;
 
+import calculator.Calculator;
+
+import java.util.Collections;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        ArithmeticCalculator cal = new ArithmeticCalculator();
+        ArithmeticCalculator<Double> cal = new ArithmeticCalculator<>();
         Scanner sc = new Scanner(System.in);
 
         while (true) {
@@ -34,15 +38,7 @@ public class App {
                         break;
                     }
                     System.out.println("잘못된 입력입니다. 다시 입력해주세요");
-
-
-                    // PLUS / MINUS 으로 받았을 때
-//                    op = OperatorType.valueOf(sc.next());
-//                    if (op == OperatorType.PLUS || op == OperatorType.MINUS || op == OperatorType.MULTIPLY || op == OperatorType.DIVIDE) {
-//                        break;
-//                    }
-//                    System.out.println("잘못된 입력입니다. 다시 입력해주세요");
-               }
+                }
 
                     while (true) {
                         System.out.print("두 번째 숫자를 입력하세요 : ");
@@ -61,6 +57,7 @@ public class App {
                     System.out.println("result = " + result);
                     System.out.println("결과 : " + cal.getResult());
 
+
                 } catch(InputMismatchException e){
                     System.out.println("잘못 입력하셨습니다. 처음부터 다시 입력해주세요..");
                     sc.nextLine();
@@ -74,6 +71,14 @@ public class App {
                     if ("remove".equalsIgnoreCase(command)) {
                         cal.removeResult();
                         System.out.println("삭제한 계산 기록 : " + cal.getResult());
+                        continue;
+                    }
+
+                    if ("get".equalsIgnoreCase(command)) {
+                        System.out.print("입력한 숫자보다 큰 값들 조회 : ");
+                        double input = sc.nextDouble();
+                        cal.getBigValue(input);
+                        System.out.println("input = " + cal.getBigValue(input));
                         continue;
                     }
 
