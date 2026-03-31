@@ -1,6 +1,5 @@
 package commerce;
 
-import java.util.Scanner;
 
 public class Product {
     // 속성
@@ -9,15 +8,25 @@ public class Product {
     private String description;
     private int stock;
 
-    Scanner sc = new Scanner(System.in);
-
     // 생성자
     public Product(String name, String price, String description) {
         this.name = name;
         this.price = price;
         this.description = description;
+        this.
     }
 
+    public String getName() {
+        return this.name;
+    }
+
+    public String getPrice() {
+        return this.price;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
 
     public void products() {
     }
