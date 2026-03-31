@@ -77,7 +77,7 @@ public class App {
                     }
 
                     if("max".equalsIgnoreCase(command)) {
-                        System.out.print("가장 큰 값 조회 : " + cal.getBigNumber());
+                        System.out.print("가장 큰 값 조회 : " + cal.getMax());
                         continue;
                     }
 

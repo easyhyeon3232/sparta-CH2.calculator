@@ -12,8 +12,6 @@ public class App {
         Calculator cal = new Calculator();
         Scanner sc = new Scanner(System.in);
 
-
-
         while (true) {
 
             int num1 = 0;
@@ -35,7 +33,6 @@ public class App {
                 sc.nextLine();
                 continue;
             }
-
 
             boolean flag = true;
             while (flag) {
