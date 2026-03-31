@@ -33,7 +33,7 @@ public class Main {
                 return;
             } else if ( input > 0 && input <= products.size()) {
                 Product readproduct = products.get(input-1);
-                System.out.println(input + "." + products);
+                System.out.println(input + "." + readproduct);
                 System.out.println("=================================================");
             }
         }
