@@ -48,7 +48,7 @@ public class ArithmeticCalculator {
 
     }
 
-    public Double getBigNumber () {
+    public Double getMax() {
         return resultsList.stream()
                 // Double::campareTo :  더블 클래스에 있는 숫자 비교 기능(campareTo)을 가져다 쓰갰다.
                 // 람다식 : (a, b) -> a.campareTo(b)
