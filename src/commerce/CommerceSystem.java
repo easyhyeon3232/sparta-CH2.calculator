@@ -9,33 +9,26 @@ import java.util.Scanner;
 public class CommerceSystem {
 
     // 속성 - private TIL
-    private List<Category> categorys = new ArrayList<>();
+    private List<Category> category = new ArrayList<>();
 
     private Scanner sc = new Scanner(System.in);
-    private String electronics;
-    private String clothing;
-    private String food;
 
 
     // 생성자
-    public CommerceSystem(String electronics, String clothing, String food) {
-        this.electronics = electronics;
-        this.clothing = clothing;
-        this.food = food;
+    public CommerceSystem() {
+
     }
 
 
     // 기능
 
 
-
-
     Category cate = new Category();
-    cate p1 = new Product("Galaxy S25", 1200000, "최신 안드로이드 스마트폰", 50);
+    Product p1 = new Product("Galaxy S25", 1200000, "최신 안드로이드 스마트폰", 50);
     Product p2 = new Product("iPhone 16", 1350000, "Apple의 최신 스마트폰", 40);
     Product p3 = new Product("MacBook Pro", 2400000, "M3 칩셋이 탑재된 노트북", 30);
     Product p4 = new Product("AirPods Pro", 350000, "노이즈 캔슬링 무선 이어폰", 20);
-        categorys.add(electronics);
+    Category.add();
         Category.add(p2);
         list.add(p3);
         list.add(p4);
