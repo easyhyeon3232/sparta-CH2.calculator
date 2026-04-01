@@ -17,7 +17,6 @@ public enum OperatorType {
             if(type.symbol == inputsymbol) {
                 return type;
             }
-            System.out.println("op = " + type);
         }
         return null;
     }
