@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ *
+ */
 // <T extends Number> : T는 숫자 종류라면 무엇이든 가능하다는 제한
 public class ArithmeticCalculator {
 
