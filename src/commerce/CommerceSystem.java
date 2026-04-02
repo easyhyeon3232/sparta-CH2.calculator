@@ -62,7 +62,7 @@ public class CommerceSystem {
 
     /**
      * 메인 메뉴인 실시간 커머스 플랫폼의 카테고리 목록을 화면에 출력합니다.
-     * 등록된 모든 카테고리 이름을 번화와 함께 표시하며, 종료 옵션을 포함합니다.
+     * 등록된 모든 카테고리 이름을 번호와 함께 표시하며, 종료 옵션을 포함합니다.
      */
     public void printMainMenu() {
         System.out.println("[ 실시간 커머스 플랫폼 ]");
@@ -95,10 +95,11 @@ public class CommerceSystem {
         i -= 1;
         if(i < category.getProductList().size()) {
             Product product = category.getProductList().get(i);
-            System.out.println((i + 1) + ". " + product);
+            System.out.println((i + 1) + ". " + product + " | " + product.getStock());
             // 줄바꿈 역할
             System.out.println();
         }
+
     }
 
     /**
@@ -110,14 +111,17 @@ public class CommerceSystem {
         while (true) {
             int productInput;
             int input;
+
             printMainMenu();
-            // 각 카테고리 제품 리스트
 
             input = sc.nextInt();
             if (input == 0) {
                 System.out.println("커머스 플랫폼을 종료합니다.");
                 return;
+            } else if(!(input > 0 && input <= categoryList.size())) {
+                System.out.println("잘못된 카테고리 선택입니다.\n");
             }
+
 
             if (input > 0 && input <= categoryList.size()) {
                 Category readProduct = categoryList.get(input - 1);
@@ -128,10 +132,9 @@ public class CommerceSystem {
                 if(productInput > 0 && productInput <= readProduct.getProductList().size()) {
                     printProduct(readProduct, productInput);
                 } else {
-                    System.out.println("잘못된 상품입니다.");
+                System.out.println("잘못된 상품 선택입니다.");
                 }
             }
-
         }
     }
 }
