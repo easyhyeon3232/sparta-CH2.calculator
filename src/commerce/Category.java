@@ -43,6 +43,10 @@ public class Category {
         return this.name;
     }
 
+    /**
+     * 상품의 리스트를 반환합니다.
+     * @return 상품의 리스트 (List<Product>)
+     */
     public List<Product> getProductList(){
         return this.productList;
     }

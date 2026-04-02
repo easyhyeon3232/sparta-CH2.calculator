@@ -61,47 +61,79 @@ public class CommerceSystem {
     // 기능
 
     /**
+     * 메인 메뉴인 실시간 커머스 플랫폼의 카테고리 목록을 화면에 출력합니다.
+     * 등록된 모든 카테고리 이름을 번화와 함께 표시하며, 종료 옵션을 포함합니다.
+     */
+    public void printMainMenu() {
+        System.out.println("[ 실시간 커머스 플랫폼 ]");
+        for (int i = 0; i < categoryList.size(); i++) {
+            Category getCategory = categoryList.get(i);
+            System.out.println((i + 1) + ". " + getCategory.getCategoryName());
+        }
+        System.out.println("0. 종료  |  프로그램 종료 ");
+    }
+
+    /**
+     * 선택된 카테고리에 포함된 전체 상품 목록을 화면에 출력합니다.
+     * @param category 상품 목록을 출력할 대상 카테고리 객체
+     */
+    public void printProductList(Category category) {
+        System.out.println("[ " + category.getCategoryName() + " 카테고리 ]");
+        for (int i = 0; i < category.getProductList().size(); i++) {
+            Product product = category.getProductList().get(i);
+            System.out.println((i + 1) + ". " + product);
+        }
+        System.out.println("0. 뒤로가기");
+    }
+
+    /**
+     * 특정 카테고리 내에서 사용자가 선택한 특정 상품의 상세 정보를 출력합니다.
+     * @param category 상품을 찾을 카테고리 객체
+     * @param i 사용자가 입력한 상품 번호 (1부터 시작)
+     */
+    public void printProduct(Category category, int i) {
+        i -= 1;
+        if(i < category.getProductList().size()) {
+            Product product = category.getProductList().get(i);
+            System.out.println((i + 1) + ". " + product);
+            // 줄바꿈 역할
+            System.out.println();
+        }
+    }
+
+    /**
      * 실시간 커머스 플랫폼의 메인 루프를 시작합니다.
-     * 카테고리별 상품 목록을 출력하고 사용자로부터 상품 선택 또는 종료를 입력받아 처리합니다.
+     * 메뉴 출력, 카테고리 선태, 상품 선택 및 상세 정보 표시 과정을 반복하며
+     * 사용자가 0을 입력할 경우 프로그램을 종료하거나 이전 메뉴로 돌아갑니다.
      */
     public void start() {
         while (true) {
+            int productInput;
+            int input;
+            printMainMenu();
+            // 각 카테고리 제품 리스트
 
-
-            System.out.println("[ 실시간 커머스 플랫폼 ]");
-            for (int i = 0; i < categoryList.size(); i++) {
-                Category getCategory = categoryList.get(i);
-
-                System.out.println((i + 1) + ". " + getCategory.getCategoryName());
-            }
-            System.out.println("0. 종료  |  프로그램 종료 ");
-
-            int input = sc.nextInt();
+            input = sc.nextInt();
             if (input == 0) {
                 System.out.println("커머스 플랫폼을 종료합니다.");
                 return;
-            } else if (input > 0 && input <= categoryList.size()) {
-                Category readProduct = categoryList.get(input - 1);
-
-                // 각 카테고리 제품 리스트
-                switch (input) {
-                    case 1 -> System.out.println("[ 전자제품 카테고리 ]");
-                    case 2 -> System.out.println("[ 의류 카테고리 ]");
-                    case 3 -> System.out.println("[ 식품 카테고리 ]");
-                    default -> System.out.println("잘못입력하셨습니다.");
-                }
-                for (int i = 0; i < readProduct.getProductList().size(); i++) {
-                    Product product = readProduct.getProductList().get(i);
-                    System.out.println((i + 1) + ". " + product);
-                }
-                System.out.println("0. 뒤로가기");
-
-                // 선택한 상품 출력
-//                for (int i = 0; categoryList.el)
-//                if (productInput == 0) {
-
-                System.out.println("=================================================");
             }
+
+            if (input > 0 && input <= categoryList.size()) {
+                Category readProduct = categoryList.get(input - 1);
+                printProductList(readProduct);
+                productInput = sc.nextInt();
+                if(productInput == 0) continue;
+
+                if(productInput > 0 && productInput <= readProduct.getProductList().size()) {
+                    printProduct(readProduct, productInput);
+                } else {
+                    System.out.println("잘못된 상품입니다.");
+                }
+            }
+
         }
     }
 }
+
+
