@@ -48,6 +48,14 @@ public class Product {
         return this.description;
     }
 
+    /**
+     *
+     * @return 재고 수량을 반환합니다. (int)
+     */
+    public int getStock() {
+        return this.stock;
+    }
+
 
     /**
      * 상품 객체를 주소값 대신 문자열 형태로 변환합니다.
@@ -60,22 +68,5 @@ public class Product {
         // %,15d : 15칸 확보, 오른쪽 정렬, 3자리마다 콤마 추가
         // %-10s : 이름(10칸 왼쪽 정렬  / %12d : 가격 (12칸 오른쪽 정렬) / %s : 설명
         return String.format("%-15s | %,12d원 | %s", name, price, description);
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
     }
 }
